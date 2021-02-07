@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+
+class Serializer {
+public:
+    virtual void beginArray() = 0;
+    virtual void addArrayItem(const std::string &) = 0;
+    virtual void endArray() = 0;
+};
+class JsonSerializer: public Serializer {
+public:
+    void beginArray() override
+    {
+        if(_s.empty() || _s[_s.size() - 1] == '[')
+        {
+            _s += '[';
+        }
+        else
+        {
+            if (_countEnds == _countBegin)
+                _s = "";
+
+            _s += ',';
+            _s += '[';
+
+        }
+        ++_countBegin;
+    }
+    void addArrayItem(const std::string & str) override
+    {
+
+        if (_s[_s.size() - 1] == '[')
+            _s += '"' + str + '"';
+
+        else
+        {
+            std::string newStr = '"' + str + '"';
+            _s += ',' + newStr;
+        }
+    }
+    void endArray() override
+    {
+        _s += ']';
+        ++_countEnds;
+
+        if(_countBegin == _countEnds)
+        {
+            std::cout << _s;
+            _countBegin = 0;
+            _countEnds = 0;
+        }
+    }
+
+private:
+    std::string _s;
+    int _countBegin = 0;
+    int _countEnds = 0;
+
+};
