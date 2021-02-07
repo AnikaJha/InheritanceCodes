@@ -1,7 +1,3 @@
-//
-// Created by Eddie on 20.02.2020.
-//
-
 #ifndef GEOMETRYINHERITANCE_FIGURE_H
 #define GEOMETRYINHERITANCE_FIGURE_H
 
