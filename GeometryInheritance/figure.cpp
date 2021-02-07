@@ -1,6 +1,4 @@
-//
-// Created by Eddie on 20.02.2020.
-//
+
 #include "figure.h"
 
 #include <iostream>
@@ -122,7 +120,6 @@ void GeometryStore::printFigures() const
         {
             std::cout << "Other figure" << "\n";
         }
-
     }
 }
 
